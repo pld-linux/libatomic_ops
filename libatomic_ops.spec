@@ -2,11 +2,11 @@ Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
 Version:	7.2
-Release:	1
+Release:	2
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
 Group:		Development/Libraries
-Source0:	http://www.hpl.hp.com/research/linux/atomic_ops/download/%{name}-%{version}.tar.gz
-# Source0-md5:	890acdc83a7cd10e2e9536062d3741c8
+Source0:	http://www.hpl.hp.com/research/linux/atomic_ops/download/%{name}-%{version}d.tar.gz
+# Source0-md5:	e6997db4875909e11b514cd5c3caa3cf
 URL:		http://www.hpl.hp.com/research/linux/atomic_ops/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
