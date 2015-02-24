@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
 # NOTE: 7.4.0 is considered experimental (as of Nov 2013)
 Version:	7.2e
-Release:	1
+Release:	2
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
 Group:		Development/Libraries
 #Source0Download http://www.hpl.hp.com/research/linux/atomic_ops/download.php4
