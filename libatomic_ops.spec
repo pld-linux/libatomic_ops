@@ -2,14 +2,14 @@ Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
 # NOTE: 7.4.0 is considered experimental (as of Nov 2013)
-Version:	7.2e
-Release:	2
+Version:	7.2g
+Release:	1
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
 Group:		Development/Libraries
-#Source0Download http://www.hpl.hp.com/research/linux/atomic_ops/download.php4
-Source0:	http://www.hpl.hp.com/research/linux/atomic_ops/download/%{name}-%{version}.tar.gz
-# Source0-md5:	7035692fec4db2659b06485040829e43
-URL:		http://www.hpl.hp.com/research/linux/atomic_ops/
+#Source0Download: https://github.com/ivmai/libatomic_ops/wiki/Download
+Source0:	http://www.ivmaisoft.com/_bin/atomic_ops/%{name}-%{version}.tar.gz
+# Source0-md5:	e6d1c85c90563555f1fde7a0980d41ab
+URL:		https://github.com/ivmai/libatomic_ops/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,6 +39,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/libatomic_ops/{COPYING,LICENSING.txt,README*.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
