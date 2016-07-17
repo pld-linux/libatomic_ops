@@ -1,7 +1,7 @@
 Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
-# NOTE: 7.4.0 is considered experimental (as of Nov 2013)
+# NOTE: 7.4.x used to be considered experimental until ~2014; see DEVEL branch for now
 Version:	7.2g
 Release:	1
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
