@@ -1,14 +1,13 @@
 Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
-# NOTE: 7.4.x used to be considered experimental until ~2014; see DEVEL branch for now
-Version:	7.2g
+Version:	7.4.4
 Release:	1
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
-Group:		Development/Libraries
+Group:		Libraries
 #Source0Download: https://github.com/ivmai/libatomic_ops/wiki/Download
 Source0:	http://www.ivmaisoft.com/_bin/atomic_ops/%{name}-%{version}.tar.gz
-# Source0-md5:	e6d1c85c90563555f1fde7a0980d41ab
+# Source0-md5:	426d804baae12c372967a6d183e25af2
 URL:		https://github.com/ivmai/libatomic_ops/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,11 +26,36 @@ pakietów ten uwzględnia semantykę barier pamięciowych i pozwala na
 konstruowanie kodu na wielu różnych architekturach z minimalnym
 narzutem.
 
+%package devel
+Summary:	Header files for libatomic_ops libraries
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek libatomic_ops
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Header files for libatomic_ops libraries.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe bibliotek libatomic_ops.
+
+%package static
+Summary:	Static libatomic_ops libraries
+Summary(pl.UTF-8):	Statyczne biblioteki libatomic_ops
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static libatomic_ops libraries.
+
+%description static -l pl.UTF-8
+Statyczne biblioteki libatomic_ops.
+
 %prep
-%setup -q -n %{name}-7.2
+%setup -q
 
 %build
-%configure
+%configure \
+	--enable-shared
 %{__make}
 
 %install
@@ -40,16 +64,32 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/libatomic_ops/{COPYING,LICENSING.txt,README*.txt}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libatomic*.la
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/libatomic_ops/{COPYING,LICENSING.txt,README.md,README*.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README doc/{LICENSING.txt,README.txt,README_malloc.txt,README_stack.txt}
-%{_libdir}/libatomic_ops.a
-%{_libdir}/libatomic_ops_gpl.a
+%doc AUTHORS ChangeLog README.md doc/{LICENSING.txt,README.txt,README_malloc.txt,README_stack.txt}
+%attr(755,root,root) %{_libdir}/libatomic_ops.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libatomic_ops.so.1
+%attr(755,root,root) %{_libdir}/libatomic_ops_gpl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libatomic_ops_gpl.so.1
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libatomic_ops.so
+%attr(755,root,root) %{_libdir}/libatomic_ops_gpl.so
 %{_includedir}/atomic_ops*.h
 %{_includedir}/atomic_ops
 %{_pkgconfigdir}/atomic_ops.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libatomic_ops.a
+%{_libdir}/libatomic_ops_gpl.a
