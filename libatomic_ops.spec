@@ -1,13 +1,13 @@
 Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
-Version:	7.4.4
+Version:	7.6.8
 Release:	1
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
 Group:		Libraries
 #Source0Download: https://github.com/ivmai/libatomic_ops/wiki/Download
-Source0:	http://www.ivmaisoft.com/_bin/atomic_ops/%{name}-%{version}.tar.gz
-# Source0-md5:	426d804baae12c372967a6d183e25af2
+Source0:	https://github.com/ivmai/libatomic_ops/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	99128f05e3e3f4e0cd39aa23f23bbe0c
 URL:		https://github.com/ivmai/libatomic_ops/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -65,7 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libatomic*.la
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/libatomic_ops/{COPYING,LICENSING.txt,README.md,README*.txt}
+# packaged as %doc
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/libatomic_ops/{COPYING,LICENSING.txt,README.md,README*.txt}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README.md doc/{LICENSING.txt,README.txt,README_malloc.txt,README_stack.txt}
+%doc AUTHORS ChangeLog README.md doc/{LICENSING.txt,README_details.txt,README_malloc.txt,README_stack.txt}
 %attr(755,root,root) %{_libdir}/libatomic_ops.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libatomic_ops.so.1
 %attr(755,root,root) %{_libdir}/libatomic_ops_gpl.so.*.*.*
