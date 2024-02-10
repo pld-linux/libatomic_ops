@@ -1,13 +1,13 @@
 Summary:	Atomic operations implementation
 Summary(pl.UTF-8):	Implementacja operacji atomowych
 Name:		libatomic_ops
-Version:	7.8.0
+Version:	7.8.2
 Release:	1
 License:	MIT-like (libatomic_ops), GPL v2+ (libatomic_ops_gpl)
 Group:		Libraries
 #Source0Download: https://github.com/ivmai/libatomic_ops/wiki/Download
 Source0:	https://github.com/ivmai/libatomic_ops/releases/download/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a7e51e8041c3e60c298c037b2789c3fa
+# Source0-md5:	d07b3d8369d7f9efdca59f7501dd1117
 URL:		https://github.com/ivmai/libatomic_ops/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
